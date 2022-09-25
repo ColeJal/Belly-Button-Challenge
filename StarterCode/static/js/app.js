@@ -105,55 +105,51 @@ function buildChart(currentID){
     
     
         Plotly.newPlot('bar', bellyData, bellyLayout);
+        
+        let bellyBubData = {
+            x: otuId,
+            y: sampleValues,
+            mode: "markers",
+            text: otuLabels,
+            marker: {
+                color: otuId,
+                size: sampleValues,
+            }
+            
+        }
     
+        let bellyBubLayout = {
+            margin: {t: 100},
+            xaxis: { title: "OTU ID"},
+            hovermode: "closest",
+        };
+            Plotly.newPlot('bubble', bellyBubData, bellyBubLayout);
     
     })
     
     // console.log(resp)
+
 }
 
-d3.json('samples.json').then(function(resp){
-    console.log(resp)
-    let sampleData = resp.samples
-    let fiteredSample = sampleData.filter(person => person.id == currentID)[0]
-    console.log(fiteredSample)
-    let otuId = fiteredSample.otu_ids
-    let sampleValues = fiteredSample.sample_values
-    let otuLabels = fiteredSample.otu_labels
-    
-    
-    let trace1 = {
-        x: otuId,
-        y: sampleValues,
-        type: 'bubble',
-        text: otuLabels,
-        mode: 'markers',
-        marker: {
-            color: otuId,
-            size: sampleValues,
-        }
-    }
-    
-    
-    let bellyBubData = [trace1];
+init();
+    // let bellyBubData = {
+    //     x: otuId,
+    //     y: sampleValues,
+    //     mode: "markers",
+    //     text: otuLabels,
+    //     marker: {
+    //         color: otuId,
+    //         size: sampleValues,
+    //     }
+        
+    // }
 
-    let bbuttonLayout = {
-        margin: {
-            l: 50,
-            b: 50,
-            t: 50
-
-        },
-
-        xaxis: {title: "OTU ID"},
-
-        hovermode: "closest",
-    };
-
-    // Plotly.newPlot('bubble', bellyBubData, bbuttonLayout);
-})
-
-Plotly.newPlot('bubble', bellyBubData, bbuttonLayout);
+    // let bellyBubLayout = {
+    //     margin: {t: 0},
+    //     xaxis: { title: "OTU ID"},
+    //     hovermode: "closest",
+    // };
+    //     Plotly.newPlot('bubble', bellyBubData, bellyBubLayout);
 
 // d3.json('samples.json').then(function(resp){
 //     console.log(resp)
