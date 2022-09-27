@@ -105,8 +105,11 @@ function buildChart(currentID){
     
     
         Plotly.newPlot('bar', bellyData, bellyLayout);
+
+        // let sampleValuesBub = sampleValues[0].sample_values;
+        // let otuIdBub = sampleValues[0].otu_ids;
         
-        let bellyBubData = {
+        let bellyBubData = [{
             x: otuId,
             y: sampleValues,
             mode: "markers",
@@ -116,22 +119,24 @@ function buildChart(currentID){
                 size: sampleValues,
             }
             
-        }
+        }];
     
         let bellyBubLayout = {
             margin: {t: 100},
             xaxis: { title: "OTU ID"},
-            hovermode: "closest",
         };
-            Plotly.newPlot('bubble', bellyBubData, bellyBubLayout);
+        
+        Plotly.newPlot('bubble', bellyBubData, bellyBubLayout);
     
     })
     
+
+
     // console.log(resp)
 
-}
+};
 
-init();
+
     // let bellyBubData = {
     //     x: otuId,
     //     y: sampleValues,
@@ -188,5 +193,4 @@ init();
 //     Plotly.newPlot('bar', bellyData, bellyLayout);
 
 
-// })
-
+// }
